@@ -1,11 +1,11 @@
-{pkgs, ...}:
+{fetchFromGitHub, haskellPackages, vimUtils, ...}:
 let
-  ghc = pkgs.haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
+  ghc = haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
     tidal
   ]);
-in pkgs.vimUtils.buildVimPlugin {
+in vimUtils.buildVimPlugin {
   name = "vim-tidal";
-  src = pkgs.fetchFromGitHub {
+  src = fetchFromGitHub {
     owner = "tidalcycles";
     repo = "vim-tidal";
     rev = "e440fe5bdfe07f805e21e6872099685d38e8b761";
